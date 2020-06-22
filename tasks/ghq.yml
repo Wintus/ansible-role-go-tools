@@ -2,4 +2,6 @@
 
 - name: install or update ghq
   shell: go get -v -u github.com/motemen/ghq
-  changed_when: no
+  register: ghq_update
+  changed_when: |
+    'github.com/motemen/ghq' in ghq_update.stderr_lines[-1]
