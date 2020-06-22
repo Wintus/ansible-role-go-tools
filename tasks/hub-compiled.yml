@@ -28,7 +28,7 @@
     - name: install hub with man
       shell: ./install
       args:
-        chdir: "{{ working_dir }}/hub-linux-amd64-{{ hub_version }}/bin/hub"
+        chdir: "{{ working_dir }}/hub-linux-amd64-{{ hub_version }}/"
       become: yes
 
     - name: add fish completions
