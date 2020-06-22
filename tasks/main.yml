@@ -1,4 +1,5 @@
 ---
+# TODO: use community role
 - name: install Go
   import_tasks: golang.yml
 
