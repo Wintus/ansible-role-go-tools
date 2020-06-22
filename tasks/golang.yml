@@ -1,0 +1,12 @@
+---
+- name: install Go
+  become: yes
+  package:
+    name: golang
+
+- name: set $GOPATH in profile
+  become: yes
+  template:
+    src: golang.sh
+    dest: "/etc/profile.d/"
+    mode: a+x

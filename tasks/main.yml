@@ -1,2 +1,6 @@
 ---
-# tasks file for go-tools
+- name: install Go
+  import_tasks: golang.yml
+
+- name: install tools
+  import_tasks: tools.yml
