@@ -9,10 +9,12 @@
   changed_when: which_hub.rc != 0
 
 - name: check hub version
+  when: which_hub is not changed
   shell: hub --version
   register: hub_ver
   failed_when: no
-  changed_when: "'hub version ' + hub_version not in hub_ver.stdout"
+  changed_when: |
+    ('hub version ' + hub_version) != hub_ver.stdout_lines[1]
 
 - name: install or update hub
   when: which_hub is changed or hub_ver is changed
