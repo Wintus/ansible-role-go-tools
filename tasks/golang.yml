@@ -8,5 +8,6 @@
 - name: set $GOPATH in profile
   template:
     src: golang.sh
-    dest: "{{ bash_profile_dir }}/"
+    dest: "/etc/profile.d/"
     mode: a+x
+  become: yes
