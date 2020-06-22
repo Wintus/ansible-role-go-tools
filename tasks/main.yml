@@ -1,2 +1,15 @@
 ---
-# tasks file for go-tools
+- name: install Go
+  when: ansible_pkg_mgr == "apt"
+  become: yes
+  apt:
+    name: golang
+
+- name: set $GOPATH in profile
+  template:
+    src: golang.sh
+    dest: "{{ bash_profile_dir }}/"
+    mode: a+x
+
+- name: install tools
+  import_tasks: tools.yml
