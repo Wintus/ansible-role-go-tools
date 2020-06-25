@@ -1,7 +1,7 @@
 ---
 
 - name: install or update ghq
-  shell: go get -v -u github.com/motemen/ghq
+  command: go get -v -u github.com/motemen/ghq
   register: ghq_update
   changed_when: |
     'github.com/motemen/ghq' in ghq_update.stderr_lines[-1]
