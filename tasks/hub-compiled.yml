@@ -28,9 +28,7 @@
         dest: "{{ working_dir }}"
 
     - name: install hub with man
-      script: ./install
-      args:
-        chdir: "{{ working_dir }}/hub-linux-amd64-{{ hub_version }}/"
+      script: "{{ working_dir }}/hub-linux-amd64-{{ hub_version }}/install"
       become: yes
 
     - name: add fish completions
