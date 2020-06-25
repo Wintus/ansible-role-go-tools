@@ -18,22 +18,25 @@
 
 - name: install or update hub
   when: which_hub is changed or hub_ver is changed
-  vars:
-    working_dir: /tmp
   block:
+    - name: create temporary file
+      tempfile:
+        state: directory
+      register: tempdir
+
     - name: download hub binary
       unarchive:
         remote_src: yes
         src: "{{ hub_url }}"
-        dest: "{{ working_dir }}"
+        dest: "{{ tempdir.path }}"
 
     - name: install hub with man
-      script: "{{ working_dir }}/hub-linux-amd64-{{ hub_version }}/install"
+      script: "{{ tempdir.path }}/hub-linux-amd64-{{ hub_version }}/install"
       become: yes
 
     - name: add fish completions
       copy:
-        src: "{{ working_dir }}/hub-linux-amd64-{{ hub_version }}/etc/hub.fish_completion"
+        src: "{{ tempdir.path }}/hub-linux-amd64-{{ hub_version }}/etc/hub.fish_completion"
         dest: ~/.config/fish/completions/hub.fish
 
     - name: set hub profile
