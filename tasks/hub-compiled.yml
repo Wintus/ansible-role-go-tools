@@ -31,7 +31,9 @@
         dest: "{{ tempdir.path }}"
 
     - name: install hub with man
-      script: "{{ tempdir.path }}/hub-linux-amd64-{{ hub_version }}/install"
+      command:
+        chdir: "{{ tempdir.path }}/hub-linux-amd64-{{ hub_version }}/"
+        cmd: ./install
       become: yes
 
     - name: add fish completions
