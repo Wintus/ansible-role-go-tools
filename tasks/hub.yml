@@ -1,7 +1,7 @@
 ---
 # hub command
 - name: install hub
-  shell: go get -v -u github.com/github/hub
+  command: go get -v -u github.com/github/hub
   register: hub_update
   changed_when: |
     'github.com/github/hub' in hub_update.stderr_lines[-1]
